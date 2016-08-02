@@ -1,0 +1,43 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
+
+    defaultConfig {
+        applicationId "com.example.liucy01.getuidemo"
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+        ndk {
+            abiFilters "armeabi", "armeabi-v7a", "arm64-v8a", "mips", "mips64", "x86", "x86_64"
+        }
+        manifestPlaceholders = [
+                GETUI_APP_ID : "sPkzt3B0sy8sfaEVLidlI9",
+                GETUI_APP_KEY : "9GK2oaBoQ27jBG0NtNC0a5",
+                GETUI_APP_SECRET : "nLa62WLlrn7CKVHY2J1nE4",
+                PACKAGE_NAME : applicationId
+        ]
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.getui:sdk:2.9.0.0'
+    compile 'com.android.support:support-v4:+'
+    compile files('libs/json_simple-1.1.jar')
+}
